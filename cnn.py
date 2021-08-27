@@ -65,6 +65,6 @@ with open("model.json","w")  as json_file:
         json_file.write(model_json)
 
 cnn.save_weights("model.h5")
-
+print("-- cnn model saved in model.json file --")
 
 
