@@ -44,11 +44,11 @@ cnn.compile(optimizer ='adam', loss ='binary_crossentropy', metrics = ['accuracy
 
 cnn.fit(x= train_set, validation_data = test_set, epochs = 25)
 
+
+# making single prediction
 import numpy as np
 from keras.preprocessing import image 
-
 test_image = image.load_img("dataset/single_prediction/cat_or_dog_1.jpg", target_size=(64,64))
-
 test_image = image.img_to_array(test_image)
 test_image = np.expand_dims(test_image, axis=0)
 res = cnn.predict(test_image)
@@ -59,6 +59,12 @@ else:
         pred = "cat"
 print(pred)
 
+# saving model to json file
+model_json = cnn.to_json()
+with open("model.json","w")  as json_file:
+        json_file.write(model_json)
+
+cnn.save_weights("model.h5")
 
 
 
